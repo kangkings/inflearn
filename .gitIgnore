@@ -1,0 +1,52 @@
+# macOS 관련
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.log
+*.out
+*.class
+
+# Gradle
+.gradle/
+build/
+
+# Maven
+target/
+
+# Eclipse
+*.classpath
+*.project
+*.settings/
+
+# IntelliJ IDEA
+*.iml
+.idea/
+out/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# H2 Database
+/h2/
+*.mv.db
+*.trace.db
