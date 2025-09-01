@@ -2,6 +2,8 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 public class JpaMain {
 
     public static void main(String[] args) {
@@ -26,7 +28,7 @@ public class JpaMain {
 //            em.persist(member);
 
             //조회
-            Member member = em.find(Member.class, 2L);
+//            Member member = em.find(Member.class, 2L);
 //            System.out.println("Id : " + member.getId());
 //            System.out.println("Name : " + member.getName());
 
@@ -36,7 +38,21 @@ public class JpaMain {
             //수정
             //JPA를 통해서 객체를 가져오면 엔티티매니저에 의해 관리됨
             //이후 트랜잭션이 끝날 때 변경사항을 체크해서 자동으로 변경사항에 대한 Update 쿼리가 나간다.
-            member.setName("HelloJPA");
+//            member.setName("HelloJPA");
+
+            //JPQL
+            //JPA가 제공하는 추상화된 SQL, 객체지향적 쿼리 언어 제공
+            //SQL문법과 유사, 테이블이 아닌 엔티티 객체를 대상으로 쿼리
+            //DB독립적 (객체 대상이기 때문, Dialect 바꾸면 해당 벤더에 해당하는 쿼리로 자동 변경)
+            //하나의 추상화된 쿼리로 다른 변경 없이 다양한 벤더의 쿼리 사용 가능
+            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+                    .setFirstResult(5)
+                    .setMaxResults(8)
+                    .getResultList();
+            for (Member member : result) {
+                System.out.println(member.getName());
+            }
+
             tx.commit();
 
         } catch (Exception e) {
