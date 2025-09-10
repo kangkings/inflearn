@@ -9,6 +9,20 @@ import java.util.Date;
 //uniqueConstraint 옵션값으로 이름과 함께 설정
 //(밑에 컬럼에서 설정하면 UK-~@#@!#@!이런식이라 이름으로 알기 힘들어짐)
 @Table(name = "Member")
+
+//테이블마다 sequence를 별도로 만들어 쓸때 필요
+//@SequenceGenerator(
+//        name = "MEMBER_SEQ_GENERATOR",
+//        sequenceName = "MEMBER_SEQ",//매핑할 데이터베이스 시퀀스 이름
+//        initialValue = 1, allocationSize = 1
+//)
+
+//Table 매핑 방식 사용
+//@TableGenerator(
+//        name = "MEMBER+SEQ_GENERATOR",
+//        table = "MY_SEQUENCES",
+//        pkColumnValue = "MEMBER_SEQ", allocationSize = 1
+//)
 public class Member {
 
     /*
@@ -21,6 +35,7 @@ public class Member {
      */
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
     /*
